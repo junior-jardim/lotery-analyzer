@@ -1,0 +1,10 @@
+
+{"python.testing.pytestEnabled": true,
+"python.testing.unittestEnabled": false,
+"editor.formatOnSave": true,
+"editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit"
+    },
+    "python.analysis.typeCheckingMode": "basic"
+
+}
