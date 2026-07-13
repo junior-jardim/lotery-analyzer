@@ -3,16 +3,11 @@ from pathlib import Path
 from src.services.importador_megasena import ImportadorMegaSena
 
 
-def main() -> None:
+def test_importa_cinco_concursos() -> None:
     caminho = Path("data/raw/mega_sena.csv")
 
     importador = ImportadorMegaSena(caminho)
 
     concursos = importador.importar()
 
-    for concurso in concursos:
-        print(concurso)
-
-
-if __name__ == "__main__":
-    main()
+    assert len(concursos) == 5
