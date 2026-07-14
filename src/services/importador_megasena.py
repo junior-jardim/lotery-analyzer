@@ -3,7 +3,8 @@ from pathlib import Path
 
 import pandas as pd
 
-from src.models.concurso import Concurso
+from src.domain.contest import Contest
+from src.lotteries.megasena.lottery import MEGA_SENA
 
 
 class ImportadorMegaSena:
@@ -12,7 +13,7 @@ class ImportadorMegaSena:
     def __init__(self, arquivo: Path) -> None:
         self.arquivo = arquivo
 
-    def importar(self) -> list[Concurso]:
+    def importar(self) -> list[Contest]:
         """Lê o CSV e retorna uma lista de objetos Concurso."""
 
         dataframe = pd.read_csv(
@@ -20,11 +21,12 @@ class ImportadorMegaSena:
             sep=";",
         )
 
-        concursos: list[Concurso] = []
+        contests: list[Contest] = []
 
         for _, linha in dataframe.iterrows():
 
-            concurso = Concurso(
+            contest = Contest(
+                lottery=MEGA_SENA,
                 numero=int(linha["concurso"]),
                 data=datetime.strptime(
                     linha["data"],
@@ -40,6 +42,6 @@ class ImportadorMegaSena:
                 ],
             )
 
-            concursos.append(concurso)
+            contests.append(contest)
 
-        return concursos
+        return contests

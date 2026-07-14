@@ -8,6 +8,6 @@ def test_importa_cinco_concursos() -> None:
 
     importador = ImportadorMegaSena(caminho)
 
-    concursos = importador.importar()
+    contests = importador.importar()
 
-    assert len(concursos) == 5
+    assert len(contests) == 5
